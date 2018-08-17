@@ -1,5 +1,6 @@
 import io
 import os
+import sys
 
 import dill
 import pandas as pd
@@ -219,3 +220,27 @@ class DSModel:
         self.scaler.fit(X)
         X = self.scaler.transform(X)
         self.model = self.model.fit(X, y)
+
+
+if __name__ == '__main__':
+    asset_dir = 'asset_dir'
+    dump_dir = 'dump_dir'
+    data_dir = 'data_dir'
+
+    if len(sys.argv) == 2 and sys.argv[1] == 'train':
+        model = DSModel(asset_dir, dump_dir)
+        model.train(data_dir)
+        model.dump()
+    elif len(sys.argv) == 2 and sys.argv[1] == 'test':
+        # load just a single file for test
+        filename = os.path.join(str(data_dir), '00000.csv')
+        with open(filename, 'rb') as file:
+            bytes_ = file.read()
+        input_data = [bytes_]
+
+        model = DSModel(asset_dir, dump_dir)
+        model.load()
+        results = model.predict(input_data)
+        print(results)
+    else:
+        raise Exception
