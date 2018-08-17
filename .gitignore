@@ -5,3 +5,6 @@
 *.pyc
 *.iml
 *.xml
+
+.ipynb_checkpoints/
+data/
