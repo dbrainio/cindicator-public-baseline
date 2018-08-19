@@ -223,6 +223,10 @@ class DSModel:
 
 
 if __name__ == '__main__':
+    """
+        A basic test of your model. Trains the model on all files from data_dir and predicts for a single file in data_dir.
+        For thorough testing please refer to ModelTraining.ipynb
+    """
     asset_dir = 'asset_dir'
     dump_dir = 'dump_dir'
     data_dir = 'data_dir'
