@@ -124,7 +124,7 @@ class DSModel:
 
         data_dir contains multiple csv files, each one for questions finished at the same time.
 
-        Here we implement a simple calibrated logistic regression model.
+        Here we implement a simple random forest model.
 
         :param data_dir: A path to directory where data and markup is stored. For data format please refer to
         :return:
