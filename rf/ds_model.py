@@ -13,7 +13,8 @@ from sklearn.preprocessing import StandardScaler
 """
 More detailed example of DBrain API. You can definitely use it as a boilerplate for your complex models.
 
-This model builds features for each question as mean and median predictions of top and worst-performing users.
+This model builds features for each question as mean and median predictions of top and worst-performing users
+and trains a random forest model on those features to predict the true outcome.
 """
 
 
