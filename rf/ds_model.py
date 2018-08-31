@@ -47,9 +47,13 @@ class DataTransformer:
         df = self.select_active_users(df)
         user_accs = {}
         for user_id, group in df.groupby("user_id"):
-            preds = group["user_answer"]
-            targets = group["question_answer"]
-            acc = accuracy_score(targets, preds > 0.5)
+            preds = group["user_answer"].fillna(0)
+            targets = group["question_answer"].fillna(0)
+            try:
+                acc = accuracy_score(targets, preds > 0.5)
+            except:
+                print(preds)
+                print(targets)
             user_accs[user_id] = acc
         self.user_accs = user_accs
 
@@ -64,7 +68,7 @@ class DataTransformer:
 
             user_ids = group["user_id"]
             preds = group["user_answer"]
-
+            preds
             top_preds = []
             worst_preds = []
             regular_preds = []
@@ -76,7 +80,6 @@ class DataTransformer:
                     worst_preds.append(pred)
                 else:
                     regular_preds.append(pred)
-
             row = {
                 "question_id": question_id,
                 "avg_top_pred": np.mean(top_preds),
