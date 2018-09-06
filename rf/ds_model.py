@@ -146,6 +146,7 @@ class DSModel:
         X = feats[self.transformer.featnames]
         y = feats["question_answer"]
         self.scaler = StandardScaler().fit(X)
+        X = self.scaler.transform(X)
         self.model = RandomForestClassifier(n_jobs=-1, class_weight="balanced", max_depth=4,
                                             n_estimators=200, random_state=42).fit(X, y)
 
